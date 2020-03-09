@@ -1,4 +1,4 @@
-FROM node:6.15.1-stretch
+FROM node:6.15.1-stretch-slim
 MAINTAINER Petr Sloup <petr.sloup@klokantech.com>
 
 ENV NODE_ENV="production"
@@ -22,8 +22,9 @@ RUN apt-get -qq update \
     libxxf86vm-dev \
     xvfb \
     x11-utils \
-&& apt-get clean
+&& apt-get clean \
+&& rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /usr/src/app
 COPY / /usr/src/app
-RUN cd /usr/src/app && npm install --production
+RUN cd /usr/src/app && npm install --production && rm -rf /root/.npm /root/.node-gyp
