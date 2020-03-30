@@ -33,14 +33,4 @@ fs.writeFileSync('light/package.json', str);
 fs.renameSync('light/README_light.md', 'light/README.md');
 fs.renameSync('light/Dockerfile_light', 'light/Dockerfile');
 
-/* PUBLISH */
 
-// tileserver-gl
-require('child_process').execSync('npm publish .', {
-  stdio: 'inherit'
-});
-
-// tileserver-gl-light
-require('child_process').execSync('npm publish light', {
-  stdio: 'inherit'
-});
